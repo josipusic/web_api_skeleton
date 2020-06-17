@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ../../backend
+    ports:
+      - 8000:8000
+    volumes:
+      - ../../backend:/backend
+    env_file:
+      - backend.env
+    command: bash -c "python manage.py wait_for_db &&
+                      python manage.py makemigrations &&
+                      python manage.py migrate &&
+                      python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres:11
+    ports:
+      - 5432:5432
+    volumes:
+      - db_volume:/var/lib/postgresql/data/
+    env_file:
+      - db.env
+  frontend:
+    build:
+      context: ../../frontend
+    volumes:
+      - ../../frontend:/frontend
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    tty: true
+    depends_on:
+      - backend
+    command: bash -c "npm start"
+
+volumes:
+  db_volume:
