@@ -7,6 +7,3 @@ RUN npm install
 
 RUN useradd user
 USER user
-
-EXPOSE 3000
-CMD npm start
