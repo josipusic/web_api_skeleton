@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'o3-28p3w+rxnpvf3s5&ntq2d7m_#!1qxbm8!o3mfdzn4u@ih=-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True).lower() == 'true'
+DEBUG = os.environ.get('DEBUG', True) == 'true'
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -113,7 +113,6 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'users.password_validation.UserAttrSimilarityValidator',
@@ -131,7 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'users.password_validation.NumericPassValidator',
     },
 ]
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 # Internationalization

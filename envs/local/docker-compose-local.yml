@@ -4,6 +4,10 @@ services:
   backend:
     build:
       context: ../../backend
+      args:
+        "USER_ID": $USER_ID
+        "GROUP_ID": $GROUP_ID
+    container_name: ${PROJECT_PREFIX}_backend
     ports:
       - 8000:8000
     volumes:
@@ -18,6 +22,7 @@ services:
       - db
   db:
     image: postgres:11
+    container_name: ${PROJECT_PREFIX}_db
     ports:
       - 5432:5432
     volumes:
@@ -30,6 +35,7 @@ services:
     volumes:
       - ../../frontend/public:/frontend/public
       - ../../frontend/src:/frontend/src
+    container_name: ${PROJECT_PREFIX}_frontend
     ports:
       - 3000:3000
     environment:
