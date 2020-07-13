@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # local apps
     'core',
+    'snippets.apps.SnippetsConfig',
     # 3rd party
     'rest_framework',
     'corsheaders',
