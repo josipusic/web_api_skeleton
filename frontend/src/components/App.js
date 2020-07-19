@@ -1,96 +1,25 @@
-import React from 'react'
-import '../css/style.css'
-import TodoItem from './TodoItem'
-import todosData from '../data/todosData'
+// import '../css/style.css'
 
-// function App() {
-//     const todoItems = todosData.map(todo => <TodoItem key={todo.id} data={todo}/>)
-//     return (
-//         <div className="todo-list">
-//             {todoItems}
-//         </div>
-//     )
-// }
+import React, {Component} from "react"
+import GrandParent from "./GrandParent"
 
-class App extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            todos: todosData
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-    handleChange(id) {
-        this.setState(prevState => {
-            const updatedTodos = prevState.todos.map(todo => {
-                if (todo.id === id) {
-                    return{...todo,
-                    completed: !todo.completed
-                }
-                }
-                return todo
-            })
-            return {
-                todos: updatedTodos
-            }
-        })
-    }
-
+class App extends Component {
+    state = { count: 0 }
+    
+    increment = () => this.setState(prevState => ({count: prevState.count + 1}))
+    
     render() {
-        const todoItems = todosData.map(todo => <TodoItem handleChange={this.handleChange} key={todo.id} data={todo}/>)
+        console.log("[GP] [P] [C] [GC] APP just rendered")
         return (
-            <div className="todo-list">
-                {todoItems}
+            <div>
+                <button onClick={this.increment}>+1</button>
+                <h2>{this.state.count}</h2>
+                <p>I'm the App component</p>
+                <GrandParent count={this.state.count} />
+                <GrandParent count={this.state.count} />
             </div>
-        )
+        )    
     }
 }
-
-// class App extends React.Component {
-//     constructor() {
-//         super()
-
-//     }
-
-//     render() {
-//         return(
-//             <div>
-//                 <img onMouseOver={() => {console.log('yesyees')}} src="https://www.fillmurray.com/200/100"/>
-//                 <br/>
-//                 <br/>
-//                 <button onClick={() => {console.log('auau')}}>Dissy</button>
-//             </div>
-//         )
-//     }
-// }
-
-
-// class App extends React.Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//             count: 0
-//         }
-//         this.handleClick = this.handleClick.bind(this)
-//     }
-
-//     handleClick() {
-//         this.setState(prevState => {
-//             return {
-//                 count: prevState.count + 2
-//             }
-//         })
-//     }
-
-//     render () {
-//         return(
-//             <div>
-//                 <p>{this.state.count}</p>
-//                 <button onClick={this.handleClick}>Increase</button>
-//             </div>
-//         )
-//     }
-// }
 
 export default App
