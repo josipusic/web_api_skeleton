@@ -1,10 +1,22 @@
 import '../css/style.css'
 import React from 'react'
+import {Switch, Route} from 'react-router-dom'
 
+import Header
+ from "./Header"
+import Cart from "./Cart"
+import Photos from "./Photos"
+import Home from './Home'
 
-function App() {
+function App() {    
     return (
-        <h1>disi</h1>
+        <div>
+            <Header />
+            <Switch>
+                <Route exact path='/'><Photos /></Route>
+                <Route path='/cart'><Cart /></Route>
+            </Switch>
+        </div>
     )
 }
 
