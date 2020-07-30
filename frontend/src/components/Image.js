@@ -3,7 +3,10 @@ import {Context} from "../Context"
 
 function Image({className, img}) {
     const [is_hovered, setIsHovered] = useState(false)
-    const {toggleFavorite} = useContext(Context)
+    const {toggleFavorite, addToCart, removeFromCart, cartItems} = useContext(Context)
+
+    const is_in_cart = cartItems.filter(item => item.id === img.id).length > 0
+
     let heartIcon = null
     if (img.isFavorite) {
         heartIcon = <i  className='ri-heart-fill favorite'
@@ -15,8 +18,16 @@ function Image({className, img}) {
                                       onClick={() => toggleFavorite(img.id)}
                                   ></i>
     }
-
-    const plusIcon = is_hovered && <i className='ri-add-circle-line cart'></i>
+    let plusIcon = null
+    if (is_in_cart) {
+        plusIcon = <i className='ri-shopping-cart-fill cart'
+                      onClick={() => removeFromCart(img.id)}
+                   ></i>
+    } else {
+        plusIcon = is_hovered && <i className='ri-add-circle-line cart'
+                                    onClick={() => addToCart(img)}
+                                ></i>    
+    }
 
     return (
         <div 

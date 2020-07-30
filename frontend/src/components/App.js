@@ -6,7 +6,6 @@ import Header
  from "./Header"
 import Cart from "./Cart"
 import Photos from "./Photos"
-import Home from './Home'
 
 function App() {    
     return (
