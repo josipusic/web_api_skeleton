@@ -1,20 +1,24 @@
 import '../css/style.css'
-import React from 'react'
-import {Switch, Route} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import Todo from './Todo'
 
-import Header
- from "./Header"
-import Cart from "./Cart"
-import Photos from "./Photos"
 
 function App() {    
+    const [todos, setTodos] = useState([])
+
+    const todos_url = 'http://127.0.0.1:8000/api/'
+
+    useEffect(() => {
+        fetch(todos_url)
+            .then(res => res.json())
+            .then(data => setTodos(data))
+    }, [])
+    
+    const todo_items = todos.map(item => <Todo key={item.id} todo={item}/>)
+
     return (
         <div>
-            <Header />
-            <Switch>
-                <Route exact path='/'><Photos /></Route>
-                <Route path='/cart'><Cart /></Route>
-            </Switch>
+            {todo_items}
         </div>
     )
 }
