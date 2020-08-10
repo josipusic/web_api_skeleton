@@ -73,9 +73,15 @@ backend:
 	@echo "== Entering $(APP_ENV) backend container for $(APP_NAME) project"
 	@docker container exec -it $(APP_NAME)_$(APP_ENV)_backend bash
 
+backend-logs:
+	@docker logs $(APP_NAME)_$(APP_ENV)_backend
+
 frontend:
 	@echo "== Entering $(APP_ENV) frontend container for $(APP_NAME) project"
 	@docker container exec -it $(APP_NAME)_$(APP_ENV)_frontend bash
+
+frontend-logs:
+	@docker logs $(APP_NAME)_$(APP_ENV)_frontend
 
 docker-list:
 	@echo "============ ALL CONTAINERS ============"
