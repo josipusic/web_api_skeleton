@@ -14,7 +14,15 @@
   that built image with docker-compose, if there is volume mount that mounts directory 
   that contains ignored files, ignored files will be coppied to container.
   Because of that volume mount is removed from production environment.
-  
+
+### Source for creating initial stack  
 - django + react https://www.craigfranklin.dev/python/docker/javascript/2019/05/16/docker-compose-django-cra/
 
-docker run -v $PWD/frontend:/frontend -it -p 3000:3000 frontend:latest2 npm start
+
+#### Why to use single node swarm in production instead of docker-compose
+- https://github.com/BretFisher/ama/issues/8
+
+
+
+
+- refer to get.docker.com to fetch a bash script to install docker
